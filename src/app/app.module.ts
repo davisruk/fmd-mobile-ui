@@ -1,3 +1,4 @@
+import { PackListEffects } from './store/effects/pack-list-effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,6 +15,11 @@ import {
   MatListModule
 } from '@angular/material';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { appReducers } from './store/reducers/app.reducers';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent, FmdNavComponent],
@@ -27,7 +33,10 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    StoreRouterConnectingModule.forRoot()
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([PackListEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' })
   ],
   providers: [],
   bootstrap: [AppComponent]

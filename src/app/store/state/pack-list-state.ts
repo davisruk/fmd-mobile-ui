@@ -4,5 +4,7 @@ export interface PackListState {
   packList: PackList;
 }
 export const initialPackListState: PackListState = {
-  packList: null
+  packList: {
+    packs: []
+  }
 };
