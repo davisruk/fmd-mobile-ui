@@ -1,0 +1,3 @@
+<div *ngFor="let item of (packList$ | async)">
+  <app-pack-detail [pack]="item"></app-pack-detail>
+</div>

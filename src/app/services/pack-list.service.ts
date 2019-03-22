@@ -24,6 +24,9 @@ export class PackListService {
   constructor() {}
 
   scanBarcode(packIndex: number): Observable<Pack> {
+    if (packIndex >= this.packsToScan.length) {
+      packIndex = packIndex % this.packsToScan.length;
+    }
     return of(this.packsToScan[packIndex]);
   }
 }
