@@ -15,6 +15,7 @@ export class AddPack implements Action {
 
 export class RemovePack implements Action {
   public readonly type = EPackListActions.RemovePack;
+  constructor(public payload: Pack) {}
 }
 
 export class ScanPack implements Action {

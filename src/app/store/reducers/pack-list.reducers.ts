@@ -21,6 +21,20 @@ export const packListReducers = (
         }
       };
     }
+    case EPackListActions.RemovePack: {
+      let packs: Pack[] = Object.assign([], state.packList.packs);
+      packs = packs.filter(
+        el =>
+          el.gtin !== action.payload.gtin &&
+          el.serialNumber !== action.payload.serialNumber
+      );
+      return {
+        ...state,
+        packList: {
+          packs
+        }
+      };
+    }
     default:
       return state;
   }

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pack } from 'src/app/models/pack-list.interface';
+import { AppState } from 'src/app/store/state/app.state';
+import { Store } from '@ngrx/store';
+import { RemovePack } from 'src/app/store/actions/pack-list.actions';
 
 @Component({
   selector: 'app-pack-detail',
@@ -9,7 +12,11 @@ import { Pack } from 'src/app/models/pack-list.interface';
 export class PackDetailComponent implements OnInit {
   @Input() pack: Pack;
 
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {}
+
+  onDelete() {
+    this.store.dispatch(new RemovePack(this.pack));
+  }
 }

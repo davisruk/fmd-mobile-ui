@@ -9,9 +9,12 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./fmd-nav.component.css']
 })
 export class FmdNavComponent {
+  /*
   isZebra$: Observable<boolean> = this.breakpointObserver
     .observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches));
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+  */
+  constructor() {}
 }
