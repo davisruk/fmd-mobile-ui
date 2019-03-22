@@ -1,7 +1,7 @@
 import { BagBuilderPageComponent } from './components/bag-builder-page/bag-builder-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BagResultsPageComponent } from './bag-results-page/bag-results-page.component';
+import { BagResultsPageComponent } from './components/bag-results-page/bag-results-page.component';
 
 const routes: Routes = [
   { path: 'build-bag', component: BagBuilderPageComponent },

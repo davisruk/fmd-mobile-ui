@@ -1,20 +1,22 @@
-<p>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="onScanClicked()"
-    style="width: 45%"
-  >
-    Scan
-  </button>
+<div>
+  <div fxLayout="row" fxLayoutGap="32px" fxLayoutAlign="space-around center">
+    <button
+      mat-raised-button
+      fxFlex="1 1 auto"
+      color="primary"
+      (click)="onScanClicked()"
+    >
+      Scan
+    </button>
 
-  <button
-    mat-raised-button
-    color="primary"
-    style="width: 45%"
-    (click)="onDecommissionClicked()"
-  >
-    Decommission
-  </button>
-</p>
-<app-bag-pack-list></app-bag-pack-list>
+    <button
+      mat-raised-button
+      color="primary"
+      fxFlex="1 1 auto"
+      (click)="onDecommissionClicked()"
+    >
+      Decommission
+    </button>
+  </div>
+  <app-bag-pack-list></app-bag-pack-list>
+</div>
