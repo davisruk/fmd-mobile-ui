@@ -12,6 +12,16 @@
 
 .mat-toolbar.mat-primary {
   position: sticky;
-  top: 0;
+  top: 10;
   z-index: 1;
+}
+
+.mat-toolbar {
+  margin-bottom: 20px;
+  box-shadow: 3px 4px 20px #737373;
+}
+
+.mat-elevation-z5 {
+  position: relative;
+  z-index: 2;
 }

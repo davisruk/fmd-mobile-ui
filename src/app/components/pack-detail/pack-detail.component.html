@@ -10,6 +10,8 @@
     <mat-list-item>Expiry: {{ pack.expiry }}</mat-list-item>
   </mat-list>
   <mat-action-row>
-    <button mat-button (click)="onDelete()">Remove</button>
+    <button mat-icon-button color="primary" (click)="onDelete()">
+      <mat-icon aria-label="">delete</mat-icon>
+    </button>
   </mat-action-row>
 </mat-expansion-panel>

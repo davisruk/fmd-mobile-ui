@@ -1,22 +1,31 @@
 <div>
-  <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-around center">
-    <button
-      mat-raised-button
-      fxFlex="1 1 auto"
-      color="primary"
-      (click)="onScanClicked()"
-    >
-      Scan
-    </button>
+  <div
+    class="bag-button-container"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="space-around center"
+  >
+    <div fxFlex="50%">
+      <button
+        mat-raised-button
+        fxFlex="1 1 auto"
+        color="primary"
+        (click)="onScanClicked()"
+      >
+        Scan
+      </button>
+    </div>
 
-    <button
-      mat-raised-button
-      color="primary"
-      fxFlex="1 1 auto"
-      (click)="onDecommissionClicked()"
-    >
-      Decommission
-    </button>
+    <div fxFlex="50%">
+      <button
+        mat-raised-button
+        color="primary"
+        fxFlex="1 1 auto"
+        (click)="onDecommissionClicked()"
+      >
+        Decommission
+      </button>
+    </div>
   </div>
   <app-bag-pack-list></app-bag-pack-list>
 </div>

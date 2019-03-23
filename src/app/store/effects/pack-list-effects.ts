@@ -25,7 +25,7 @@ export class PackListEffects {
   @Effect()
   scanPack$ = this.actions$.pipe(
     ofType<ScanPack>(EPackListActions.ScanPack),
-    switchMap(() => this.packListService.scanBarcode(this.packsLength)),
+    switchMap(() => this.packListService.scanBarcode()),
     switchMap((pack: Pack) => of(new AddPack(pack)))
   );
 }
