@@ -4,7 +4,7 @@ import {
   EPackListActions
 } from './../actions/pack-list.actions';
 import { initialPackListState } from '../state/pack-list-state';
-import { Pack } from 'src/app/models/pack-list.interface';
+import { Pack, PackList } from 'src/app/models/pack-list.interface';
 
 export const packListReducers = (
   state = initialPackListState,
@@ -35,6 +35,15 @@ export const packListReducers = (
         }
       };
     }
+
+    case EPackListActions.GetPackListResultsSuccess: {
+      const packList: PackList = Object.assign({}, state.packList);
+      return {
+        ...state,
+        packList
+      };
+    }
+
     default:
       return state;
   }

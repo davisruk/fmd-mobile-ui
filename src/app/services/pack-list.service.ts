@@ -1,6 +1,7 @@
+import { Action } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Pack } from '../models/pack-list.interface';
+import { Pack, FMDResult, PackList } from '../models/pack-list.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +28,25 @@ export class PackListService {
     ).toLocaleDateString('en-UK');
     return of(retPack);
   }
-  getRandomInt(min, max): number {
+
+  decommissionPacks(packList: PackList): Observable<PackList> {
+    packList.packs.forEach(pack => {
+      pack.fmdResult = {
+        packState: 'INACTIVE',
+        nmvsCode: 'NMVS_SUCCESS',
+        packReason: 'Successfully Decommissioned'
+      };
+    });
+    return of(packList);
+  }
+
+  private getRandomInt(min, max): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  getRandomDate(start, end): Date {
+  private getRandomDate(start, end): Date {
     const date = new Date(+start + Math.random() * (end - start));
     return date;
   }

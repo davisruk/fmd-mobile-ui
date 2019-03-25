@@ -1,3 +1,5 @@
-<div class="pack-list" *ngFor="let item of (packList$ | async)">
-  <app-pack-detail [pack]="item"></app-pack-detail>
+<div class="container">
+  <div class="pack-list" *ngFor="let item of (packList$ | async)">
+    <app-pack-detail [pack]="item"></app-pack-detail>
+  </div>
 </div>

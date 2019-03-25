@@ -2,13 +2,33 @@
   <mat-expansion-panel-header>
     <mat-panel-title> Serial Number: {{ pack.serialNumber }} </mat-panel-title>
   </mat-expansion-panel-header>
-  <mat-list>
-    <mat-list-item>GTIN: {{ pack.gtin }}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>Batch: {{ pack.batch }}</mat-list-item>
-    <mat-divider></mat-divider>
-    <mat-list-item>Expiry: {{ pack.expiry }}</mat-list-item>
-  </mat-list>
+  <div
+    class="pack-container"
+    fxLayout="row"
+    fxLayoutGap="10px"
+    fxLayoutAlign="space-around"
+  >
+    <div class="pack-detail" fxFlex="{{ pack.fmdResult ? 40 : 100 }}">
+      <mat-card>
+        <mat-list>
+          <mat-list-item>GTIN: {{ pack.gtin }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Batch: {{ pack.batch }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Expiry: {{ pack.expiry }}</mat-list-item>
+        </mat-list>
+      </mat-card>
+    </div>
+    <div class="pack-results" *ngIf="pack.fmdResult" fxFlex="60%">
+      <mat-card>
+        <mat-list-item>GTIN: {{ pack.fmdResult.packState }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Batch: {{ pack.fmdResult.nmvsCode }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Expiry: {{ pack.fmdResult.packReason }}</mat-list-item>
+      </mat-card>
+    </div>
+  </div>
   <mat-action-row>
     <button mat-icon-button color="primary" (click)="onDelete()">
       <mat-icon aria-label="">delete</mat-icon>

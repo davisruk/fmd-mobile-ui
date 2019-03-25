@@ -13,7 +13,8 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatListModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatCardModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -26,6 +27,7 @@ import { BagBuilderPageComponent } from './components/bag-builder-page/bag-build
 import { BagPackListComponent } from './components/bag-pack-list/bag-pack-list.component';
 import { PackDetailComponent } from './components/pack-detail/pack-detail.component';
 import { BagResultsPageComponent } from './components/bag-results-page/bag-results-page.component';
+import { BagPackResultsComponent } from './components/bag-pack-results/bag-pack-results.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { BagResultsPageComponent } from './components/bag-results-page/bag-resul
     BagBuilderPageComponent,
     BagPackListComponent,
     PackDetailComponent,
-    BagResultsPageComponent
+    BagResultsPageComponent,
+    BagPackResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { BagResultsPageComponent } from './components/bag-results-page/bag-resul
     MatIconModule,
     MatListModule,
     MatExpansionModule,
+    MatCardModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([PackListEffects]),
     StoreDevtoolsModule.instrument({
