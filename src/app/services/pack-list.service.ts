@@ -30,14 +30,18 @@ export class PackListService {
   }
 
   decommissionPacks(packList: PackList): Observable<PackList> {
-    packList.packs.forEach(pack => {
+    // use JSON to create a deep copy of the original request
+    // when we use an http call we will receive a brand new structure
+    // so this mimics that use case
+    const retPackList: PackList = JSON.parse(JSON.stringify(packList));
+    retPackList.packs.forEach(pack => {
       pack.fmdResult = {
         packState: 'INACTIVE',
         nmvsCode: 'NMVS_SUCCESS',
         packReason: 'Successfully Decommissioned'
       };
     });
-    return of(packList);
+    return of(retPackList);
   }
 
   private getRandomInt(min, max): number {

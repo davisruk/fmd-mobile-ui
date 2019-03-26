@@ -25,7 +25,7 @@ export class ScanPack implements Action {
 
 export class GetPackListResults implements Action {
   public readonly type = EPackListActions.GetPackListResults;
-  constructor(public payload: PackList) {}
+  constructor() {}
 }
 
 export class GetPackListResultsSuccess implements Action {

@@ -37,7 +37,7 @@ export const packListReducers = (
     }
 
     case EPackListActions.GetPackListResultsSuccess: {
-      const packList: PackList = Object.assign({}, state.packList);
+      const packList: PackList = Object.assign({}, action.payload);
       return {
         ...state,
         packList

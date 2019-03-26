@@ -10,22 +10,18 @@ import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../state/app.state';
 import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, withLatestFrom, map } from 'rxjs/operators';
 import { Pack, PackList } from 'src/app/models/pack-list.interface';
 import { PackListService } from 'src/app/services/pack-list.service';
-import { selectPacks } from '../selectors/pack-list.selectors';
+import { selectPacks, selectPackList } from '../selectors/pack-list.selectors';
 
 @Injectable()
 export class PackListEffects {
-  pack$ = this.store.pipe(select(selectPacks));
-  packsLength: number;
   constructor(
     private packListService: PackListService,
     private actions$: Actions,
     private store: Store<AppState>
-  ) {
-    this.pack$.subscribe(p => (this.packsLength = p.length));
-  }
+  ) {}
 
   @Effect()
   scanPack$ = this.actions$.pipe(
@@ -37,9 +33,12 @@ export class PackListEffects {
   @Effect()
   decommissionPack$ = this.actions$.pipe(
     ofType<GetPackListResults>(EPackListActions.GetPackListResults),
-    switchMap(action => this.packListService.decommissionPacks(action.payload)),
-    switchMap((packList: PackList) =>
-      of(new GetPackListResultsSuccess(packList))
+    withLatestFrom(this.store.pipe(select(selectPackList))),
+    switchMap(([action, storePackList]) =>
+      this.packListService.decommissionPacks(storePackList)
+    ),
+    switchMap((servicePackList: PackList) =>
+      of(new GetPackListResultsSuccess(servicePackList))
     )
   );
 }
