@@ -6,7 +6,8 @@ export enum EPackListActions {
   RemovePack = '[PackList] Remove Pack',
   ScanPack = '[PackList] Scan Pack',
   GetPackListResults = '[PackList] GetResults',
-  GetPackListResultsSuccess = '[PackList] GetResultsSuccess'
+  GetPackListResultsSuccess = '[PackList] Get Results Success',
+  ResetBag = '[PackList] Reset Bag'
 }
 
 export class AddPack implements Action {
@@ -33,9 +34,15 @@ export class GetPackListResultsSuccess implements Action {
   constructor(public payload: PackList) {}
 }
 
+export class ResetBag implements Action {
+  public readonly type = EPackListActions.ResetBag;
+  constructor() {}
+}
+
 export type PackListActions =
   | AddPack
   | RemovePack
   | ScanPack
   | GetPackListResults
-  | GetPackListResultsSuccess;
+  | GetPackListResultsSuccess
+  | ResetBag;

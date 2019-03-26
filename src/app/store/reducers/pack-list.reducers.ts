@@ -1,9 +1,11 @@
-import { PackListState } from './../state/pack-list-state';
+import {
+  PackListState,
+  initialPackListState
+} from './../state/pack-list-state';
 import {
   PackListActions,
   EPackListActions
 } from './../actions/pack-list.actions';
-import { initialPackListState } from '../state/pack-list-state';
 import { Pack, PackList } from 'src/app/models/pack-list.interface';
 
 export const packListReducers = (
@@ -42,6 +44,10 @@ export const packListReducers = (
         ...state,
         packList
       };
+    }
+
+    case EPackListActions.ResetBag: {
+      return initialPackListState;
     }
 
     default:

@@ -11,7 +11,7 @@
     fxLayoutGap="10px"
     fxLayoutAlign="space-around"
   >
-    <div class="pack-detail" fxFlex="{{ pack.fmdResult ? 40 : 100 }}">
+    <div fxFlex="{{ pack.fmdResult ? 40 : 100 }}">
       <mat-card>
         <mat-list>
           <mat-list-item>GTIN: {{ pack.gtin }}</mat-list-item>
@@ -22,7 +22,7 @@
         </mat-list>
       </mat-card>
     </div>
-    <div class="pack-results" *ngIf="pack.fmdResult" fxFlex="60%">
+    <div *ngIf="pack.fmdResult" fxFill fxFlex="60%">
       <mat-card>
         <mat-list-item
           >Pack State: {{ pack.fmdResult.packState }}</mat-list-item
@@ -35,8 +35,21 @@
     </div>
   </div>
   <mat-action-row>
-    <button mat-icon-button color="primary" (click)="onDelete()">
+    <button
+      *ngIf="!pack.fmdResult"
+      mat-icon-button
+      color="primary"
+      (click)="onDelete()"
+    >
       <mat-icon aria-label="">delete</mat-icon>
+    </button>
+
+    <button
+      *ngIf="pack.fmdResult && pack.fmdResult.nmvsCode === 'NMVS_UNKNOWN'"
+      color="primary"
+      mat-raised-button
+    >
+      Hand Out
     </button>
   </mat-action-row>
 </mat-expansion-panel>

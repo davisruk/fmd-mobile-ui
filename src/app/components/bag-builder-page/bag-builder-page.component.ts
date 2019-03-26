@@ -3,7 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
 import {
   ScanPack,
-  GetPackListResults
+  GetPackListResults,
+  ResetBag
 } from 'src/app/store/actions/pack-list.actions';
 
 @Component({
@@ -22,5 +23,9 @@ export class BagBuilderPageComponent implements OnInit {
 
   onDecommissionClicked() {
     this.store.dispatch(new GetPackListResults());
+  }
+
+  onResetBagCLicked() {
+    this.store.dispatch(new ResetBag());
   }
 }
