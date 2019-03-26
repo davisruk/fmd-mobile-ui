@@ -13,7 +13,7 @@ import { of } from 'rxjs';
 import { switchMap, withLatestFrom, map } from 'rxjs/operators';
 import { Pack, PackList } from 'src/app/models/pack-list.interface';
 import { PackListService } from 'src/app/services/pack-list.service';
-import { selectPacks, selectPackList } from '../selectors/pack-list.selectors';
+import { selectPackList } from '../selectors/pack-list.selectors';
 
 @Injectable()
 export class PackListEffects {

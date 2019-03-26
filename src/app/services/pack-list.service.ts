@@ -14,6 +14,30 @@ export class PackListService {
     expiry: '01/01/01'
   };
 
+  private templateGoodResult: FMDResult = {
+    packState: 'INACTIVE',
+    nmvsCode: 'NMVS_SUCCESS',
+    packReason: 'Successfully Decommissioned'
+  };
+
+  private templateBadResult: FMDResult = {
+    packState: 'UNKNOWN',
+    nmvsCode: 'NMVS_UNKNOWN',
+    packReason: 'Product Unknown to NMVS'
+  };
+
+  private templateWarnResult: FMDResult = {
+    packState: 'INACTIVE',
+    nmvsCode: 'NMVS_PCK_ALREADY_INACTIVE',
+    packReason: 'Pack has already been decommissioned'
+  };
+
+  private results: FMDResult[] = [
+    this.templateGoodResult,
+    this.templateBadResult,
+    this.templateWarnResult
+  ];
+
   constructor() {}
 
   scanBarcode(): Observable<Pack> {
@@ -34,12 +58,10 @@ export class PackListService {
     // when we use an http call we will receive a brand new structure
     // so this mimics that use case
     const retPackList: PackList = JSON.parse(JSON.stringify(packList));
+    let i = 0;
     retPackList.packs.forEach(pack => {
-      pack.fmdResult = {
-        packState: 'INACTIVE',
-        nmvsCode: 'NMVS_SUCCESS',
-        packReason: 'Successfully Decommissioned'
-      };
+      pack.fmdResult = this.results[i % 3];
+      i++;
     });
     return of(retPackList);
   }

@@ -1,3 +1,8 @@
+.bag-page-container {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .bag-button-container {
   top: 0;
   position: sticky;

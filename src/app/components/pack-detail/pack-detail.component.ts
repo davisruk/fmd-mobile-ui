@@ -19,4 +19,30 @@ export class PackDetailComponent implements OnInit {
   onDelete() {
     this.store.dispatch(new RemovePack(this.pack));
   }
+
+  getPanelIcon(): string {
+    if (this.pack.fmdResult != null) {
+      if (this.pack.fmdResult.nmvsCode === 'NMVS_SUCCESS') {
+        return 'check_circle';
+      } else if (this.pack.fmdResult.nmvsCode === 'NMVS_UNKNOWN') {
+        return 'warning';
+      } else {
+        return 'cancel';
+      }
+    }
+    return '';
+  }
+
+  getPackHeaderClass(): string {
+    if (this.pack.fmdResult != null) {
+      if (this.pack.fmdResult.nmvsCode === 'NMVS_SUCCESS') {
+        return 'green-icon';
+      } else if (this.pack.fmdResult.nmvsCode === 'NMVS_UNKNOWN') {
+        return 'amber-icon';
+      } else {
+        return 'red-icon';
+      }
+    }
+    return '';
+  }
 }
