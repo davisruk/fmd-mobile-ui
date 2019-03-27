@@ -9,3 +9,11 @@
 .amber-icon {
   color: orange;
 }
+
+.pack-container .mat-list-item {
+  height: 28px;
+}
+
+.pack-header {
+  height: 48px !important;
+}

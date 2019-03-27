@@ -1,40 +1,39 @@
-<mat-expansion-panel [hideToggle]="pack.fmdResult == null ? false : true">
-  <mat-expansion-panel-header>
+<mat-expansion-panel
+  [hideToggle]="pack.fmdResult == null ? false : true"
+  [expanded]="
+    pack.fmdResult != null && pack.fmdResult.nmvsCode != 'NMVS_SUCCESS'
+  "
+>
+  <mat-expansion-panel-header class="pack-header">
     <mat-panel-title> Serial Number: {{ pack.serialNumber }} </mat-panel-title>
     <mat-icon *ngIf="pack.fmdResult" [ngClass]="getPackHeaderClass()">{{
       getPanelIcon()
     }}</mat-icon>
   </mat-expansion-panel-header>
-  <div
-    class="pack-container"
-    fxLayout="row"
-    fxLayoutGap="10px"
-    fxLayoutAlign="space-around"
-  >
+  <div class="pack-container" fxLayout="row">
     <div fxFlex="{{ pack.fmdResult ? 40 : 100 }}">
-      <mat-card>
-        <mat-list>
-          <mat-list-item>GTIN: {{ pack.gtin }}</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Batch: {{ pack.batch }}</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Expiry: {{ pack.expiry }}</mat-list-item>
-        </mat-list>
-      </mat-card>
+      <mat-list>
+        <mat-list-item>GTIN: {{ pack.gtin }}</mat-list-item>
+        <mat-list-item>Batch: {{ pack.batch }}</mat-list-item>
+        <mat-list-item>Expiry: {{ pack.expiry }}</mat-list-item>
+      </mat-list>
     </div>
     <div *ngIf="pack.fmdResult" fxFill fxFlex="60%">
-      <mat-card>
+      <mat-list>
         <mat-list-item
           >Pack State: {{ pack.fmdResult.packState }}</mat-list-item
         >
-        <mat-divider></mat-divider>
         <mat-list-item>NMVS Code: {{ pack.fmdResult.nmvsCode }}</mat-list-item>
-        <mat-divider></mat-divider>
         <mat-list-item>Reason: {{ pack.fmdResult.packReason }}</mat-list-item>
-      </mat-card>
+      </mat-list>
     </div>
   </div>
-  <mat-action-row>
+  <mat-action-row
+    *ngIf="
+      !pack.fmdResult ||
+      (pack.fmdResult && pack.fmdResult.nmvsCode === 'NMVS_UNKNOWN')
+    "
+  >
     <button
       *ngIf="!pack.fmdResult"
       mat-icon-button
